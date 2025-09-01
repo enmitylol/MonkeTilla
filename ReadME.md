@@ -42,7 +42,7 @@ To register your queue, call MonkeTilla.RegisterCustomQueue() from your mod's On
 
 ## Rules:
 
-You can register a maximum of 3 custom queues in total.
+You can register a maximum of 3 custom queues in total. (this will be changed at a later date, for now the user can only have 3 custom queues at once)
 
 Queue names must be unique and will be converted to uppercase.
 
