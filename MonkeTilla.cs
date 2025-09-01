@@ -87,10 +87,9 @@ public class CustomQueueManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (networkController != null)
-        {
-            networkController.currentGameType = allQueues[currentQueueIndex];
-        }
+        // This was previously setting the currentGameType every frame,
+        // causing an automatic connection on startup. It is now handled
+        // only when a queue is explicitly selected by the player.
     }
 
     public override void OnJoinedRoom()
@@ -134,6 +133,11 @@ public class CustomQueueManager : MonoBehaviourPunCallbacks
         currentQueueIndex = index;
         gorillaQueue.currentQueue = allQueues[currentQueueIndex];
         PlayerPrefs.SetString("gorillaQueue", allQueues[currentQueueIndex]);
+        if (networkController != null)
+        {
+            networkController.currentGameType = allQueues[currentQueueIndex];
+        }
+
         UpdateVisuals();
     }
 
@@ -259,4 +263,3 @@ public class QueueSelectTrigger : GorillaTriggerBox
         manager?.SelectQueueByIndex(queueIndexToSelect);
     }
 }
-
