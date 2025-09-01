@@ -11,17 +11,17 @@ public class MonkeTilla : BaseMod
     private static GameObject managerObject;
     internal static List<string> CustomQueues = new List<string>();
 
-    public override void OnLoad()
+    public override void OnLoad(string owner)
     {
         if (managerObject == null)
         {
             managerObject = new GameObject("MonkeTillaManager");
             managerObject.AddComponent<CustomQueueManager>();
-            GameObject.DontDestroyOnLoad(managerObject);
+            GameObject.DontDestroyOnload(managerObject);
         }
     }
 
-    public override void OnUnload()
+    public override void OnUnload(bool unloading)
     {
         if (managerObject != null)
         {
@@ -87,9 +87,6 @@ public class CustomQueueManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        // This was previously setting the currentGameType every frame,
-        // causing an automatic connection on startup. It is now handled
-        // only when a queue is explicitly selected by the player.
     }
 
     public override void OnJoinedRoom()
